@@ -14,6 +14,7 @@ function scrollToSection(href) {
 }
 
 export default function Hero() {
+  const profileImageSrc = `${import.meta.env.BASE_URL}images/profile.png`;
   return (
     <section className="hero" id="hero" aria-label="Introduction">
       {/* Decorative background circles */}
@@ -109,7 +110,7 @@ export default function Hero() {
             </div> */}
 
             <img
-              src="/images/profile.png"
+              src={profileImageSrc}
               alt="Aya Vanessa O. Roche"
               className="hero-img"
             />
