@@ -115,7 +115,8 @@ export default function Footer() {
             <p className="footer-copyright">
               © {year} Aya Vanessa O. Roche. All rights reserved.
             </p>
-            <div className="footer-bottom-links">
+
+            {/* <div className="footer-bottom-links">
               <span
                 role="button"
                 tabIndex={0}
@@ -129,7 +130,7 @@ export default function Footer() {
               >
                 Back to top ↑
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>

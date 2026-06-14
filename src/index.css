@@ -2,17 +2,17 @@
    CSS VARIABLES
    ================================================ */
 :root {
-  --primary: #2e6b4f;
-  --primary-dark: #1b4f38;
-  --primary-light: #4a9470;
-  --primary-bg: #eaf4ef;
+  --primary: #216a73;
+  --primary-dark: #164d54;
+  --primary-light: #4c9199;
+  --primary-bg: #e7f3f4;
 
   --accent: #b8873a;
   --accent-light: #d4a85a;
   --accent-bg: #fdf4e3;
 
   --bg: #fafaf8;
-  --bg-alt: #f2ede6;
+  --bg-alt: #f9f9f9;
   --bg-dark: #1c1c2c;
 
   --text: #1c1c2c;
@@ -27,7 +27,7 @@
   --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 12px 40px rgba(46, 107, 79, 0.15);
+  --shadow-hover: 0 12px 40px rgba(33, 106, 115, 0.15);
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -232,6 +232,12 @@ button {
   background: var(--primary-bg);
 }
 
+.nav-link.active {
+  color: var(--primary);
+  background: var(--primary-bg);
+  font-weight: 600;
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -305,6 +311,12 @@ button {
   background: var(--primary-bg);
 }
 
+.mobile-nav-link.active {
+  color: var(--primary);
+  background: var(--primary-bg);
+  font-weight: 600;
+}
+
 /* ================================================
    HERO
    ================================================ */
@@ -314,7 +326,7 @@ button {
   align-items: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #fafaf8 0%, #f5f0e8 50%, #edf5f0 100%);
+  background: linear-gradient(135deg, #fafaf8 0%, #f5f0e8 50%, #e8f4f5 100%);
   padding: calc(var(--nav-height) + 2rem) 1.5rem 4rem;
 }
 
@@ -327,7 +339,7 @@ button {
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(46, 107, 79, 0.06) 0%,
+    rgba(33, 106, 115, 0.06) 0%,
     transparent 70%
   );
   pointer-events: none;
@@ -433,7 +445,7 @@ button {
   background: var(--primary-dark);
   border-color: var(--primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(46, 107, 79, 0.3);
+  box-shadow: 0 6px 20px rgba(33, 106, 115, 0.3);
 }
 
 .btn-outline {
@@ -477,7 +489,7 @@ button {
   position: absolute;
   inset: -12px;
   border-radius: 50%;
-  border: 3px dashed rgba(46, 107, 79, 0.3);
+  border: 3px dashed rgba(33, 106, 115, 0.3);
   animation: spin-slow 20s linear infinite;
 }
 
@@ -623,7 +635,7 @@ button {
 .about-img-placeholder .icon-wrap {
   width: 80px;
   height: 80px;
-  background: rgba(46, 107, 79, 0.12);
+  background: rgba(33, 106, 115, 0.12);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -786,7 +798,7 @@ button {
 
 .timeline-card {
   flex: 1;
-  background: var(--card);
+  background: var(--bg);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   padding: 1.6rem 1.8rem;
@@ -990,7 +1002,7 @@ button {
 }
 
 .cert-card {
-  background: var(--card);
+  background: var(--bg);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   padding: 1.5rem 1.6rem;
@@ -1344,11 +1356,109 @@ button {
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(46, 107, 79, 0.12);
+  box-shadow: 0 0 0 3px rgba(33, 106, 115, 0.12);
 }
 
 .form-group textarea {
   min-height: 130px;
+}
+
+.form-group input.input-error,
+.form-group textarea.input-error {
+  border-color: #e05252;
+  box-shadow: 0 0 0 3px rgba(224, 82, 82, 0.1);
+}
+
+.field-error {
+  font-size: 0.78rem;
+  color: #e05252;
+  font-weight: 500;
+  margin-top: -0.15rem;
+}
+
+.server-error {
+  font-size: 0.85rem;
+  color: #e05252;
+  background: rgba(224, 82, 82, 0.07);
+  border: 1px solid rgba(224, 82, 82, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 1rem;
+  font-weight: 500;
+}
+
+/* ── Success dialog ─────────────────────────────────────── */
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 28, 44, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1.5rem;
+}
+
+.success-dialog {
+  position: relative;
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem 2.5rem;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.success-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition:
+    background var(--transition),
+    color var(--transition);
+}
+
+.success-close:hover {
+  background: var(--bg-alt);
+  color: var(--text);
+}
+
+.success-icon-wrap {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 0.5rem;
+}
+
+.checkmark-svg {
+  width: 80px;
+  height: 80px;
+}
+
+.success-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.success-body {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 300px;
 }
 
 /* ================================================
@@ -1446,7 +1556,7 @@ button {
 
 .footer-bottom {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
@@ -1555,6 +1665,10 @@ button {
 @media (max-width: 768px) {
   :root {
     --nav-height: 64px;
+  }
+
+  .container {
+    padding: 0;
   }
 
   .section {

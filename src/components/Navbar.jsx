@@ -19,11 +19,32 @@ function scrollToSection(href) {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Track which section is currently in view
+  useEffect(() => {
+    const sectionIds = navLinks.map((link) => link.href.slice(1));
+
+    const handleScroll = () => {
+      // Use 25% from top as the trigger line
+      const triggerY = window.scrollY + window.innerHeight * 0.25;
+      let current = "";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= triggerY) current = "#" + id;
+      }
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // run once on mount
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Close mobile menu on resize
@@ -55,7 +76,7 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="nav-link"
+                className={`nav-link${activeSection === link.href ? " active" : ""}`}
                 onClick={(e) => handleNavClick(e, link.href)}
               >
                 {link.label}
@@ -97,7 +118,7 @@ export default function Navbar() {
               >
                 <a
                   href={link.href}
-                  className="mobile-nav-link"
+                  className={`mobile-nav-link${activeSection === link.href ? " active" : ""}`}
                   onClick={(e) => handleNavClick(e, link.href)}
                 >
                   {link.label}
