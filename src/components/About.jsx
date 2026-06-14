@@ -9,6 +9,8 @@ import {
   viewportOnce,
 } from "../utils/motionVariants";
 
+const aboutImageSrc = `${import.meta.env.BASE_URL}images/about.jpg`;
+
 export default function About() {
   return (
     <section className="section section-alt" id="about" aria-label="About">
@@ -28,19 +30,14 @@ export default function About() {
               <img src="/images/about.jpg" alt="Aya Vanessa O. Roche" className="about-img" />
               Then place the photo at: public/images/about.jpg
             */}
-            <div
-              className="about-img-placeholder"
-              role="img"
-              aria-label="About photo placeholder"
-            >
-              <div className="icon-wrap">
-                <FiUser size={32} />
-              </div>
-              <p>Replace with photo</p>
-            </div>
+            <img
+              src={aboutImageSrc}
+              alt="Aya Vanessa O. Roche"
+              className="about-img"
+            />
           </div>
           {/* Decorative border accent */}
-          <div className="about-img-accent" aria-hidden="true" />
+          {/* <div className="about-img-accent" aria-hidden="true" /> */}
         </motion.div>
 
         {/* Right: Content */}

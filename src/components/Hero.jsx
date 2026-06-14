@@ -13,8 +13,9 @@ function scrollToSection(href) {
   if (el) el.scrollIntoView({ behavior: "smooth" });
 }
 
+const profileImageSrc = `${import.meta.env.BASE_URL}images/profile.png`;
+
 export default function Hero() {
-  const profileImageSrc = `${import.meta.env.BASE_URL}images/profile.png`;
   return (
     <section className="hero" id="hero" aria-label="Introduction">
       {/* Decorative background circles */}

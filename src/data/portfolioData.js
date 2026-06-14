@@ -20,7 +20,7 @@ export const stats = [
   { number: "10+", label: "Years of Experience" },
   { number: "40%", label: "Turnaround Improvement" },
   { number: "100%", label: "Compliance Rate" },
-  { number: "500+", label: "Students Served" },
+  { number: "20k+", label: "Students Served" },
 ];
 
 export const experience = [
